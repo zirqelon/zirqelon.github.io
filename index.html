@@ -95,6 +95,8 @@ section {
 padding:100px 8%;
 }
 
+/* INICIO */
+
 .hero {
 min-height:100vh;
 padding:130px 8% 80px;
@@ -116,7 +118,7 @@ letter-spacing:2px;
 margin-bottom:35px;
 }
 
-/* ESFERA */
+/* ESFERA INTERACTIVA */
 
 .core {
 position:relative;
@@ -196,28 +198,16 @@ color:#7186a8;
 }
 
 @keyframes pulse {
-0%,100% {box-shadow:0 0 45px #00d9ff15,inset 0 0 65px #00d9ff12;}
-50% {box-shadow:0 0 85px #00d9ff35,inset 0 0 90px #00d9ff25;}
+0%,100% {
+box-shadow:0 0 45px #00d9ff15,inset 0 0 65px #00d9ff12;
+}
+50% {
+box-shadow:0 0 85px #00d9ff35,inset 0 0 90px #00d9ff25;
+}
 }
 
 @keyframes rotate {
 to {transform:rotate(360deg);}
-}
-
-/* TITULOS */
-
-.section-title {
-text-align:center;
-font-size:clamp(30px,5vw,48px);
-margin-bottom:18px;
-}
-
-.subtitle {
-color:var(--muted);
-text-align:center;
-max-width:650px;
-margin:0 auto 55px;
-line-height:1.7;
 }
 
 /* AETHER */
@@ -273,12 +263,13 @@ font-size:12px;
 margin-bottom:20px;
 }
 
-/* SERVICIOS */
+/* TARJETAS DE PROYECTOS Y SERVICIOS */
 
 .grid {
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:22px;
+margin-top:70px;
 }
 
 .card {
@@ -333,8 +324,13 @@ color:var(--blue);
 /* MOVIL */
 
 @media(max-width:750px) {
-header {padding:18px 6%;}
-.menu {display:block;}
+header {
+padding:18px 6%;
+}
+
+.menu {
+display:block;
+}
 
 nav {
 display:none;
@@ -348,17 +344,33 @@ flex-direction:column;
 text-align:center;
 }
 
-nav.active {display:flex;}
+nav.active {
+display:flex;
+}
 
-.hero {padding:120px 6% 70px;}
-section {padding:75px 6%;}
+.hero {
+padding:120px 6% 70px;
+}
 
-.project {grid-template-columns:1fr;}
-.project-info {text-align:center;}
+section {
+padding:75px 6%;
+}
+
+.project {
+grid-template-columns:1fr;
+}
+
+.project-info {
+text-align:center;
+}
 
 .core {
 width:340px;
 height:340px;
+}
+
+.grid {
+margin-top:45px;
 }
 }
 </style>
@@ -373,7 +385,6 @@ height:340px;
 <nav id="nav">
 <a href="#inicio">Inicio</a>
 <a href="#proyectos">Proyectos</a>
-<a href="#tecnologia">Servicios</a>
 <a href="#nosotros">Nosotros</a>
 </nav>
 </header>
@@ -394,12 +405,11 @@ height:340px;
 
 </section>
 
-<!-- PROYECTO AETHER -->
+<!-- PROYECTOS -->
 
 <section id="proyectos">
 
-<h2 class="section-title">Proyecto <span>AETHER</span></h2>
-<p class="subtitle">Tecnología portátil e inteligencia artificial.</p>
+<!-- AETHER -->
 
 <div class="project">
 
@@ -409,6 +419,7 @@ height:340px;
 xmlns="http://www.w3.org/2000/svg">
 
 <defs>
+
 <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
 <stop offset="0%" stop-color="#7df7ff"/>
 <stop offset="35%" stop-color="#173c72"/>
@@ -429,39 +440,57 @@ xmlns="http://www.w3.org/2000/svg">
 <feMergeNode in="SourceGraphic"/>
 </feMerge>
 </filter>
+
 </defs>
 
 <path d="M35 90 L8 65 Q0 58 5 48"
-fill="none" stroke="url(#frame)" stroke-width="13" stroke-linecap="round"/>
+fill="none" stroke="url(#frame)"
+stroke-width="13" stroke-linecap="round"/>
 
 <path d="M465 90 L492 65 Q500 58 495 48"
-fill="none" stroke="url(#frame)" stroke-width="13" stroke-linecap="round"/>
+fill="none" stroke="url(#frame)"
+stroke-width="13" stroke-linecap="round"/>
 
-<path d="M35 82 Q45 65 75 65 L190 65 Q220 65 225 95 L218 165 Q212 205 175 208 L85 208 Q42 205 35 165 Z"
-fill="url(#lens)" stroke="url(#frame)" stroke-width="12" filter="url(#glow)"/>
+<path d="M35 82 Q45 65 75 65 L190 65
+Q220 65 225 95 L218 165 Q212 205 175 208
+L85 208 Q42 205 35 165 Z"
+fill="url(#lens)" stroke="url(#frame)"
+stroke-width="12" filter="url(#glow)"/>
 
-<path d="M275 95 Q280 65 310 65 L425 65 Q455 65 465 82 L465 165 Q458 205 415 208 L325 208 Q288 205 282 165 Z"
-fill="url(#lens)" stroke="url(#frame)" stroke-width="12" filter="url(#glow)"/>
+<path d="M275 95 Q280 65 310 65 L425 65
+Q455 65 465 82 L465 165 Q458 205 415 208
+L325 208 Q288 205 282 165 Z"
+fill="url(#lens)" stroke="url(#frame)"
+stroke-width="12" filter="url(#glow)"/>
 
 <path d="M225 105 Q250 85 275 105"
-fill="none" stroke="#00d9ff" stroke-width="13" stroke-linecap="round"/>
+fill="none" stroke="#00d9ff"
+stroke-width="13" stroke-linecap="round"/>
 
-<path d="M55 85 L185 85" stroke="#8df8ff" stroke-width="2" opacity=".7"/>
-<path d="M315 85 L445 85" stroke="#8df8ff" stroke-width="2" opacity=".7"/>
+<path d="M55 85 L185 85"
+stroke="#8df8ff" stroke-width="2" opacity=".7"/>
 
-<circle cx="85" cy="185" r="4" fill="#00d9ff" filter="url(#glow)"/>
-<circle cx="415" cy="185" r="4" fill="#00d9ff" filter="url(#glow)"/>
+<path d="M315 85 L445 85"
+stroke="#8df8ff" stroke-width="2" opacity=".7"/>
+
+<circle cx="85" cy="185" r="4"
+fill="#00d9ff" filter="url(#glow)"/>
+
+<circle cx="415" cy="185" r="4"
+fill="#00d9ff" filter="url(#glow)"/>
 
 <text x="250" y="245" text-anchor="middle"
-fill="#00d9ff" font-size="18" font-family="Arial"
-letter-spacing="8">AETHER</text>
+fill="#00d9ff" font-size="18"
+font-family="Arial" letter-spacing="8">AETHER</text>
 
 </svg>
 
 </div>
 
 <div class="project-info">
+
 <span class="status">● PROTOTIPO EN DESARROLLO</span>
+
 <h3>AETHER</h3>
 
 <p>
@@ -474,21 +503,12 @@ artificial, asistencia por voz y tecnología portátil.
 Nuestro objetivo es investigar nuevas formas de
 interacción entre las personas y la inteligencia artificial.
 </p>
-</div>
 
 </div>
-</section>
 
-<!-- SERVICIOS DEBAJO DE AETHER -->
+</div>
 
-<section id="tecnologia">
-
-<h2 class="section-title">Nuestros <span>servicios</span></h2>
-
-<p class="subtitle">
-Desarrollamos soluciones tecnológicas orientadas
-a crear nuevas posibilidades.
-</p>
+<!-- TARJETAS DE SERVICIOS DENTRO DE PROYECTOS -->
 
 <div class="grid">
 
@@ -529,6 +549,7 @@ y nuevas experiencias tecnológicas.
 </article>
 
 </div>
+
 </section>
 
 <!-- NOSOTROS -->
@@ -547,6 +568,8 @@ innovadoras en proyectos reales.
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
 © <span id="year"></span> ZIRQELON · El futuro comienza aquí.
 <br><br>
@@ -554,6 +577,7 @@ Tecnología e innovación en desarrollo.
 </footer>
 
 <script>
+
 const menu=document.getElementById("menu");
 const nav=document.getElementById("nav");
 const core=document.getElementById("core");
@@ -573,7 +597,9 @@ core.style.transform="scale(1.08)";
 setTimeout(()=>core.style.transform="",450);
 });
 
-document.getElementById("year").textContent=new Date().getFullYear();
+document.getElementById("year").textContent=
+new Date().getFullYear();
+
 </script>
 
 </body>
