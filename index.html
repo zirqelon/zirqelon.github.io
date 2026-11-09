@@ -78,9 +78,7 @@ font-size:14px;
 text-decoration:none;
 }
 
-nav a:hover {
-color:var(--blue);
-}
+nav a:hover {color:var(--blue);}
 
 .menu {
 display:none;
@@ -91,11 +89,9 @@ font-size:25px;
 cursor:pointer;
 }
 
-section {
-padding:100px 8%;
-}
+section {padding:100px 8%;}
 
-/* INICIO */
+/* HERO */
 
 .hero {
 min-height:100vh;
@@ -118,7 +114,7 @@ letter-spacing:2px;
 margin-bottom:35px;
 }
 
-/* ESFERA INTERACTIVA */
+/* ESFERA */
 
 .core {
 position:relative;
@@ -198,17 +194,11 @@ color:#7186a8;
 }
 
 @keyframes pulse {
-0%,100% {
-box-shadow:0 0 45px #00d9ff15,inset 0 0 65px #00d9ff12;
-}
-50% {
-box-shadow:0 0 85px #00d9ff35,inset 0 0 90px #00d9ff25;
-}
+0%,100% {box-shadow:0 0 45px #00d9ff15,inset 0 0 65px #00d9ff12;}
+50% {box-shadow:0 0 85px #00d9ff35,inset 0 0 90px #00d9ff25;}
 }
 
-@keyframes rotate {
-to {transform:rotate(360deg);}
-}
+@keyframes rotate {to {transform:rotate(360deg);}}
 
 /* AETHER */
 
@@ -237,9 +227,7 @@ filter:drop-shadow(0 0 25px #00d9ff35);
 transition:transform .4s;
 }
 
-.project-box:hover .glasses {
-transform:scale(1.06);
-}
+.project-box:hover .glasses {transform:scale(1.06);}
 
 .project-info h3 {
 font-size:35px;
@@ -263,51 +251,133 @@ font-size:12px;
 margin-bottom:20px;
 }
 
-/* TARJETAS DE PROYECTOS Y SERVICIOS */
+/* PRODUCTOS */
 
-.grid {
+.products {
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(4,minmax(0,1fr));
 gap:22px;
-margin-top:70px;
+margin-top:75px;
 }
 
-.card {
-background:linear-gradient(145deg,#0d1729,#070c18);
+.product-card {
+position:relative;
+background:linear-gradient(160deg,#0d1729,#070c18 75%);
 border:1px solid #ffffff12;
-padding:32px;
-border-radius:15px;
-transition:.3s;
+border-radius:18px;
+overflow:hidden;
+transition:transform .35s,border-color .35s,box-shadow .35s;
 }
 
-.card:hover {
-transform:translateY(-7px);
-border-color:#00d9ff55;
-box-shadow:0 10px 40px #00d9ff0b;
+.product-card:hover {
+transform:translateY(-9px);
+border-color:#00d9ff66;
+box-shadow:0 15px 45px #00d9ff12;
 }
 
-.icon {
-font-size:32px;
-margin-bottom:20px;
+.product-visual {
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+background:
+radial-gradient(circle at center,#00d9ff16,transparent 70%),
+linear-gradient(145deg,#0b1425,#050914);
+border-bottom:1px solid #ffffff10;
 }
 
-.card h3 {
-margin-bottom:15px;
-font-size:21px;
+.product-visual::before {
+content:"";
+position:absolute;
+width:170px;
+height:170px;
+border:1px solid #00d9ff15;
+border-radius:50%;
 }
 
-.card p {
+.product-visual svg {
+width:85%;
+max-width:220px;
+height:auto;
+position:relative;
+z-index:2;
+filter:drop-shadow(0 0 18px #00d9ff22);
+transition:transform .5s;
+}
+
+.product-card:hover .product-visual svg {
+transform:scale(1.09);
+}
+
+.product-body {
+padding:25px;
+}
+
+.product-label {
+font-size:10px;
+color:var(--blue);
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:12px;
+}
+
+.product-body h3 {
+font-size:20px;
+line-height:1.3;
+margin-bottom:13px;
+}
+
+.product-body p {
 color:var(--muted);
+font-size:13px;
 line-height:1.7;
-font-size:14px;
+min-height:66px;
 }
+
+.product-button {
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-top:22px;
+padding:12px 15px;
+border:1px solid #00d9ff40;
+border-radius:8px;
+text-decoration:none;
+color:var(--blue);
+font-size:13px;
+transition:background .3s,color .3s;
+}
+
+.product-button:hover {
+background:var(--blue);
+color:#050812;
+}
+
+.product-button span {font-size:18px;}
 
 /* NOSOTROS */
 
-.contact {
+#nosotros {
 text-align:center;
-background:linear-gradient(180deg,transparent,#07142655);
+max-width:1100px;
+margin:auto;
 }
+
+.section-title {
+font-size:clamp(30px,5vw,45px);
+margin-bottom:25px;
+}
+
+#nosotros p {
+color:var(--muted);
+line-height:1.9;
+max-width:750px;
+margin:auto;
+}
+
+/* FOOTER */
 
 footer {
 text-align:center;
@@ -317,20 +387,17 @@ border-top:1px solid #ffffff10;
 font-size:13px;
 }
 
-footer span {
-color:var(--blue);
-}
+footer span {color:var(--blue);}
 
-/* MOVIL */
+/* RESPONSIVE */
+
+@media(max-width:1100px) {
+.products {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
 
 @media(max-width:750px) {
-header {
-padding:18px 6%;
-}
-
-.menu {
-display:block;
-}
+header {padding:18px 6%;}
+.menu {display:block;}
 
 nav {
 display:none;
@@ -344,34 +411,29 @@ flex-direction:column;
 text-align:center;
 }
 
-nav.active {
-display:flex;
+nav.active {display:flex;}
+
+.hero {padding:120px 6% 70px;}
+section {padding:75px 6%;}
+
+.project {grid-template-columns:1fr;}
+.project-info {text-align:center;}
+
+.core {width:340px;height:340px;}
+.products {margin-top:45px;gap:15px;}
+.product-visual {height:175px;}
+.product-body {padding:18px;}
+.product-body h3 {font-size:17px;}
+.product-body p {font-size:12px;}
+.product-button {font-size:12px;padding:10px;}
 }
 
-.hero {
-padding:120px 6% 70px;
-}
-
-section {
-padding:75px 6%;
-}
-
-.project {
-grid-template-columns:1fr;
-}
-
-.project-info {
-text-align:center;
-}
-
-.core {
-width:340px;
-height:340px;
-}
-
-.grid {
-margin-top:45px;
-}
+@media(max-width:430px) {
+.products {grid-template-columns:1fr;}
+.product-visual {height:230px;}
+.product-body {padding:25px;}
+.product-body h3 {font-size:21px;}
+.product-body p {font-size:14px;min-height:auto;}
 }
 </style>
 </head>
@@ -381,7 +443,6 @@ margin-top:45px;
 <header>
 <a href="#inicio" class="logo">ZIRQ<span>ELON</span></a>
 <button class="menu" id="menu">☰</button>
-
 <nav id="nav">
 <a href="#inicio">Inicio</a>
 <a href="#proyectos">Proyectos</a>
@@ -392,7 +453,6 @@ margin-top:45px;
 <!-- INICIO -->
 
 <section class="hero" id="inicio">
-
 <div class="tag">TECNOLOGÍA · INTELIGENCIA · INNOVACIÓN</div>
 
 <div class="core" id="core">
@@ -402,7 +462,6 @@ margin-top:45px;
 <small>EXPLORE THE FUTURE</small>
 </div>
 </div>
-
 </section>
 
 <!-- PROYECTOS -->
@@ -417,158 +476,188 @@ margin-top:45px;
 
 <svg class="glasses" viewBox="0 0 500 260"
 xmlns="http://www.w3.org/2000/svg">
-
 <defs>
-
 <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
 <stop offset="0%" stop-color="#7df7ff"/>
 <stop offset="35%" stop-color="#173c72"/>
 <stop offset="70%" stop-color="#050b18"/>
 <stop offset="100%" stop-color="#00d9ff"/>
 </linearGradient>
-
 <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1">
 <stop offset="0%" stop-color="#00d9ff" stop-opacity=".35"/>
 <stop offset="50%" stop-color="#092b54" stop-opacity=".8"/>
 <stop offset="100%" stop-color="#00d9ff" stop-opacity=".12"/>
 </linearGradient>
-
 <filter id="glow">
 <feGaussianBlur stdDeviation="5" result="blur"/>
-<feMerge>
-<feMergeNode in="blur"/>
-<feMergeNode in="SourceGraphic"/>
-</feMerge>
+<feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
 </filter>
-
 </defs>
-
-<path d="M35 90 L8 65 Q0 58 5 48"
-fill="none" stroke="url(#frame)"
-stroke-width="13" stroke-linecap="round"/>
-
-<path d="M465 90 L492 65 Q500 58 495 48"
-fill="none" stroke="url(#frame)"
-stroke-width="13" stroke-linecap="round"/>
-
-<path d="M35 82 Q45 65 75 65 L190 65
-Q220 65 225 95 L218 165 Q212 205 175 208
-L85 208 Q42 205 35 165 Z"
-fill="url(#lens)" stroke="url(#frame)"
-stroke-width="12" filter="url(#glow)"/>
-
-<path d="M275 95 Q280 65 310 65 L425 65
-Q455 65 465 82 L465 165 Q458 205 415 208
-L325 208 Q288 205 282 165 Z"
-fill="url(#lens)" stroke="url(#frame)"
-stroke-width="12" filter="url(#glow)"/>
-
-<path d="M225 105 Q250 85 275 105"
-fill="none" stroke="#00d9ff"
-stroke-width="13" stroke-linecap="round"/>
-
-<path d="M55 85 L185 85"
-stroke="#8df8ff" stroke-width="2" opacity=".7"/>
-
-<path d="M315 85 L445 85"
-stroke="#8df8ff" stroke-width="2" opacity=".7"/>
-
-<circle cx="85" cy="185" r="4"
-fill="#00d9ff" filter="url(#glow)"/>
-
-<circle cx="415" cy="185" r="4"
-fill="#00d9ff" filter="url(#glow)"/>
-
-<text x="250" y="245" text-anchor="middle"
-fill="#00d9ff" font-size="18"
-font-family="Arial" letter-spacing="8">AETHER</text>
-
+<path d="M35 90 L8 65 Q0 58 5 48" fill="none" stroke="url(#frame)" stroke-width="13" stroke-linecap="round"/>
+<path d="M465 90 L492 65 Q500 58 495 48" fill="none" stroke="url(#frame)" stroke-width="13" stroke-linecap="round"/>
+<path d="M35 82 Q45 65 75 65 L190 65 Q220 65 225 95 L218 165 Q212 205 175 208 L85 208 Q42 205 35 165 Z" fill="url(#lens)" stroke="url(#frame)" stroke-width="12" filter="url(#glow)"/>
+<path d="M275 95 Q280 65 310 65 L425 65 Q455 65 465 82 L465 165 Q458 205 415 208 L325 208 Q288 205 282 165 Z" fill="url(#lens)" stroke="url(#frame)" stroke-width="12" filter="url(#glow)"/>
+<path d="M225 105 Q250 85 275 105" fill="none" stroke="#00d9ff" stroke-width="13" stroke-linecap="round"/>
+<path d="M55 85 L185 85 M315 85 L445 85" stroke="#8df8ff" stroke-width="2" opacity=".7"/>
+<circle cx="85" cy="185" r="4" fill="#00d9ff" filter="url(#glow)"/>
+<circle cx="415" cy="185" r="4" fill="#00d9ff" filter="url(#glow)"/>
+<text x="250" y="245" text-anchor="middle" fill="#00d9ff" font-size="18" font-family="Arial" letter-spacing="8">AETHER</text>
 </svg>
 
 </div>
 
 <div class="project-info">
-
 <span class="status">● PROTOTIPO EN DESARROLLO</span>
-
 <h3>AETHER</h3>
-
-<p>
-Un proyecto experimental de gafas inteligentes
-que busca explorar la integración de inteligencia
-artificial, asistencia por voz y tecnología portátil.
-</p>
-
-<p>
-Nuestro objetivo es investigar nuevas formas de
-interacción entre las personas y la inteligencia artificial.
-</p>
-
+<p>Un proyecto experimental de gafas inteligentes que busca explorar la integración de inteligencia artificial, asistencia por voz y tecnología portátil.</p>
+<p>Nuestro objetivo es investigar nuevas formas de interacción entre las personas y la inteligencia artificial.</p>
 </div>
 
 </div>
 
-<!-- TARJETAS DE SERVICIOS DENTRO DE PROYECTOS -->
+<!-- PRODUCTOS TECNOLÓGICOS -->
 
-<div class="grid">
+<div class="products">
 
-<article class="card">
-<div class="icon">🌐</div>
-<h3>Creación de páginas web</h3>
-<p>
-Desarrollo de sitios web modernos, responsivos
-y personalizados para proyectos, marcas y negocios.
-</p>
+<!-- WEB -->
+
+<article class="product-card">
+<div class="product-visual">
+<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="screen1" x1="0" y1="0" x2="1" y2="1">
+<stop stop-color="#00d9ff" stop-opacity=".5"/>
+<stop offset="1" stop-color="#173c72" stop-opacity=".2"/>
+</linearGradient>
+</defs>
+<rect x="28" y="22" width="184" height="112" rx="10" fill="#101d32" stroke="#00d9ff" stroke-width="2"/>
+<rect x="36" y="30" width="168" height="96" rx="5" fill="url(#screen1)"/>
+<circle cx="45" cy="39" r="3" fill="#ff5b78"/>
+<circle cx="55" cy="39" r="3" fill="#ffcf57"/>
+<circle cx="65" cy="39" r="3" fill="#4cffb0"/>
+<rect x="48" y="54" width="68" height="7" rx="3" fill="#00d9ff"/>
+<rect x="48" y="68" width="105" height="4" rx="2" fill="#9ab8dc" opacity=".6"/>
+<rect x="48" y="78" width="85" height="4" rx="2" fill="#9ab8dc" opacity=".4"/>
+<rect x="48" y="91" width="44" height="22" rx="4" fill="#00d9ff" opacity=".4"/>
+<rect x="101" y="91" width="44" height="22" rx="4" fill="#477bff" opacity=".5"/>
+<rect x="154" y="91" width="38" height="22" rx="4" fill="#00d9ff" opacity=".2"/>
+<path d="M15 145 H225 L208 158 H32 Z" fill="#17253c" stroke="#00d9ff" stroke-opacity=".5"/>
+<rect x="95" y="145" width="50" height="4" rx="2" fill="#00d9ff" opacity=".5"/>
+</svg>
+</div>
+<div class="product-body">
+<div class="product-label">DESARROLLO DIGITAL</div>
+<h3>Páginas web</h3>
+<p>Sitios modernos, rápidos y personalizados para marcas, proyectos y negocios.</p>
+<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
+</div>
 </article>
 
-<article class="card">
-<div class="icon">🤖</div>
-<h3>Inteligencias artificiales personalizadas</h3>
-<p>
-Diseño de asistentes de IA adaptados a necesidades
-específicas, automatización y sistemas inteligentes.
-</p>
+<!-- IA -->
+
+<article class="product-card">
+<div class="product-visual">
+<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bot1" x1="0" y1="0" x2="1" y2="1">
+<stop stop-color="#8af8ff"/>
+<stop offset="1" stop-color="#477bff"/>
+</linearGradient>
+</defs>
+<circle cx="120" cy="85" r="65" fill="#00d9ff" opacity=".05"/>
+<path d="M120 25 V42" stroke="#00d9ff" stroke-width="4"/>
+<circle cx="120" cy="21" r="7" fill="#00d9ff"/>
+<rect x="55" y="45" width="130" height="100" rx="28" fill="#10223e" stroke="url(#bot1)" stroke-width="3"/>
+<rect x="68" y="58" width="104" height="60" rx="18" fill="#050d1b"/>
+<circle cx="95" cy="85" r="10" fill="#00d9ff"/>
+<circle cx="145" cy="85" r="10" fill="#00d9ff"/>
+<path d="M103 104 Q120 117 137 104" fill="none" stroke="#477bff" stroke-width="4" stroke-linecap="round"/>
+<rect x="82" y="128" width="76" height="7" rx="3" fill="#00d9ff" opacity=".5"/>
+<path d="M45 65 L35 55 M195 65 L205 55" stroke="#00d9ff" stroke-width="4" stroke-linecap="round"/>
+<circle cx="35" cy="55" r="5" fill="#477bff"/>
+<circle cx="205" cy="55" r="5" fill="#477bff"/>
+</svg>
+</div>
+<div class="product-body">
+<div class="product-label">INTELIGENCIA ARTIFICIAL</div>
+<h3>IA personalizadas</h3>
+<p>Asistentes inteligentes diseñados para tareas, necesidades y objetivos específicos.</p>
+<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
+</div>
 </article>
 
-<article class="card">
-<div class="icon">🛡️</div>
-<h3>Sistemas de seguridad avanzados</h3>
-<p>
-Exploración y desarrollo de soluciones de seguridad
-digital, protección de información y sistemas.
-</p>
+<!-- SEGURIDAD -->
+
+<article class="product-card">
+<div class="product-visual">
+<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="shield1" x1="0" y1="0" x2="1" y2="1">
+<stop stop-color="#8af8ff"/>
+<stop offset="1" stop-color="#477bff"/>
+</linearGradient>
+</defs>
+<circle cx="120" cy="85" r="65" fill="#477bff" opacity=".06"/>
+<path d="M120 25 L175 45 V85 Q170 125 120 150 Q70 125 65 85 V45 Z" fill="#10223e" stroke="url(#shield1)" stroke-width="3"/>
+<path d="M120 38 L160 52 V85 Q155 115 120 135 Q85 115 80 85 V52 Z" fill="#00d9ff" opacity=".15"/>
+<path d="M98 87 L113 102 L145 68" fill="none" stroke="#00d9ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="120" cy="85" r="75" fill="none" stroke="#00d9ff" stroke-opacity=".15" stroke-dasharray="4 8"/>
+</svg>
+</div>
+<div class="product-body">
+<div class="product-label">PROTECCIÓN DIGITAL</div>
+<h3>Seguridad avanzada</h3>
+<p>Investigación de soluciones para proteger información, sistemas y entornos digitales.</p>
+<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
+</div>
 </article>
 
-<article class="card">
-<div class="icon">⚡</div>
+<!-- TECNOLOGÍA -->
+
+<article class="product-card">
+<div class="product-visual">
+<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="chip1" x1="0" y1="0" x2="1" y2="1">
+<stop stop-color="#00d9ff"/>
+<stop offset="1" stop-color="#477bff"/>
+</linearGradient>
+</defs>
+<rect x="62" y="38" width="116" height="104" rx="15" fill="#101d32" stroke="url(#chip1)" stroke-width="3"/>
+<rect x="78" y="54" width="84" height="72" rx="9" fill="#061020" stroke="#00d9ff" stroke-opacity=".5"/>
+<rect x="95" y="71" width="50" height="38" rx="7" fill="#00d9ff" opacity=".2"/>
+<path d="M105 81 L120 96 L135 81" fill="none" stroke="#00d9ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g stroke="#00d9ff" stroke-width="3" stroke-linecap="round" opacity=".7">
+<path d="M85 38 V25 M105 38 V25 M125 38 V25 M145 38 V25 M165 38 V25"/>
+<path d="M85 142 V155 M105 142 V155 M125 142 V155 M145 142 V155 M165 142 V155"/>
+<path d="M62 58 H49 M62 78 H49 M62 98 H49 M62 118 H49"/>
+<path d="M178 58 H191 M178 78 H191 M178 98 H191 M178 118 H191"/>
+</g>
+<circle cx="120" cy="90" r="55" fill="none" stroke="#477bff" stroke-opacity=".15"/>
+</svg>
+</div>
+<div class="product-body">
+<div class="product-label">INNOVACIÓN</div>
 <h3>Tecnología inteligente</h3>
-<p>
-Investigación de electrónica, dispositivos inteligentes
-y nuevas experiencias tecnológicas.
-</p>
+<p>Exploración de electrónica, dispositivos inteligentes y nuevas experiencias tecnológicas.</p>
+<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
+</div>
 </article>
 
 </div>
-
 </section>
 
 <!-- NOSOTROS -->
 
 <section id="nosotros">
-
 <h2 class="section-title">El futuro se <span>construye</span></h2>
-
-<p class="subtitle">
-ZIRQELON es una iniciativa tecnológica enfocada en
-explorar, aprender y desarrollar ideas relacionadas
-con inteligencia artificial, software y dispositivos
-inteligentes. Nuestra visión es convertir ideas
-innovadoras en proyectos reales.
+<p>
+ZIRQELON es una iniciativa tecnológica enfocada en explorar,
+aprender y desarrollar ideas relacionadas con inteligencia
+artificial, software y dispositivos inteligentes. Nuestra
+visión es convertir ideas innovadoras en proyectos reales.
 </p>
-
 </section>
-
-<!-- FOOTER -->
 
 <footer>
 © <span id="year"></span> ZIRQELON · El futuro comienza aquí.
@@ -577,7 +666,6 @@ Tecnología e innovación en desarrollo.
 </footer>
 
 <script>
-
 const menu=document.getElementById("menu");
 const nav=document.getElementById("nav");
 const core=document.getElementById("core");
@@ -597,9 +685,7 @@ core.style.transform="scale(1.08)";
 setTimeout(()=>core.style.transform="",450);
 });
 
-document.getElementById("year").textContent=
-new Date().getFullYear();
-
+document.getElementById("year").textContent=new Date().getFullYear();
 </script>
 
 </body>
