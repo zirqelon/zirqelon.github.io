@@ -4,640 +4,1038 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07100e">
 <title>ZIRQELON | El futuro comienza aquí</title>
-<meta name="theme-color" content="#050812">
 
 <style>
 :root {
---bg:#050812;
---blue:#00d9ff;
---blue2:#477bff;
---text:#f4f8ff;
---muted:#9aa9c5;
+    --bg: #07100e;
+    --green: #10b981;
+    --lime: #84cc16;
+    --white: #ecfdf5;
+    --muted: #94a3b8;
+    --panel: rgba(10, 25, 20, .85);
 }
 
 * {
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-background:var(--bg);
-color:var(--text);
-font-family:Arial,Helvetica,sans-serif;
-overflow-x:hidden;
+    background: var(--bg);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 body::before {
-content:"";
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 20% 20%,#09234b55,transparent 35%),
-radial-gradient(circle at 80% 70%,#002c5055,transparent 40%);
-pointer-events:none;
-z-index:-1;
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(16,185,129,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,185,129,.035) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-header {
-position:fixed;
-top:0;
-width:100%;
-padding:22px 8%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-background:#050812cc;
-backdrop-filter:blur(15px);
-border-bottom:1px solid #ffffff10;
-z-index:100;
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* NAVBAR */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 8%;
+    background: rgba(7,16,14,.78);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(16,185,129,.12);
 }
 
 .logo {
-font-size:25px;
-font-weight:900;
-letter-spacing:4px;
-text-decoration:none;
-color:white;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 4px;
 }
 
-.logo span,.section-title span {
-color:var(--blue);
+.logo span {
+    color: var(--green);
 }
 
-nav {
-display:flex;
-gap:30px;
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 
-nav a {
-color:var(--muted);
-font-size:14px;
-text-decoration:none;
+.nav-links a {
+    color: #a7b9b0;
+    font-size: 13px;
+    transition: .3s;
 }
 
-nav a:hover {color:var(--blue);}
-
-.menu {
-display:none;
-background:none;
-border:none;
-color:white;
-font-size:25px;
-cursor:pointer;
+.nav-links a:hover {
+    color: var(--lime);
 }
 
-section {padding:100px 8%;}
+.nav-button {
+    padding: 11px 20px;
+    border: 1px solid var(--green);
+    border-radius: 5px;
+    color: var(--green);
+    background: transparent;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.nav-button:hover {
+    background: var(--green);
+    color: #04110c;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+}
 
 /* HERO */
 
 .hero {
-min-height:100vh;
-padding:130px 8% 80px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 115px 20px 70px;
+    position: relative;
 }
 
-.tag {
-color:var(--blue);
-border:1px solid #00d9ff55;
-background:#00d9ff0a;
-border-radius:30px;
-padding:9px 18px;
-font-size:12px;
-letter-spacing:2px;
-margin-bottom:35px;
+.hero-label {
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
 }
 
-/* ESFERA */
+/* NUEVO VÓRTEX: PORTAL HEXAGONAL */
 
-.core {
-position:relative;
-width:430px;
-height:430px;
-max-width:90vw;
-max-height:90vw;
-border-radius:50%;
-border:1px solid #00d9ff66;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-cursor:pointer;
-background:radial-gradient(circle,#00d9ff14,#050812 70%);
-box-shadow:0 0 50px #00d9ff15,inset 0 0 70px #00d9ff12;
-animation:pulse 4s infinite ease-in-out;
-transition:transform .4s,box-shadow .4s;
+.portal {
+    width: 330px;
+    height: 330px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    margin-bottom: 38px;
+    perspective: 900px;
+    filter: drop-shadow(0 0 25px rgba(16,185,129,.2));
 }
 
-.core:hover {
-transform:scale(1.035);
-box-shadow:0 0 90px #00d9ff35,inset 0 0 90px #00d9ff25;
+.portal-core {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    background:
+        radial-gradient(circle, #d9ffb3 0%, #84cc16 10%,
+        #10b981 35%, #064e3b 65%, transparent 75%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 25px #10b981,
+        0 0 70px rgba(16,185,129,.6),
+        0 0 130px rgba(132,204,22,.25);
+    animation: corePulse 3s ease-in-out infinite;
+    z-index: 3;
 }
 
-.core::before,.core::after {
-content:"";
-position:absolute;
-border-radius:50%;
-border:1px solid #00d9ff35;
-pointer-events:none;
+.portal-core::before {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #efffce, #10b981 60%, transparent);
+    filter: blur(5px);
 }
 
-.core::before {
-width:82%;
-height:82%;
-border-top-color:var(--blue);
-animation:rotate 18s linear infinite;
+.portal-core::after {
+    content: "";
+    position: absolute;
+    inset: -24px;
+    border: 1px solid rgba(132,204,22,.6);
+    border-radius: 50%;
+    animation: coreSpin 5s linear infinite;
 }
 
-.core::after {
-width:65%;
-height:65%;
-border-bottom-color:var(--blue);
-animation:rotate 12s linear infinite reverse;
+.hex-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: grid;
+    place-items: center;
 }
 
-.core-content {
-position:relative;
-z-index:2;
-padding:20px;
+.hex-layer span {
+    position: absolute;
+    width: 175px;
+    height: 202px;
+    border: 2px solid var(--green);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%,
+                       75% 100%, 25% 100%, 0% 50%);
+    background: linear-gradient(145deg,
+        rgba(16,185,129,.09),
+        rgba(132,204,22,.02));
+    box-shadow: inset 0 0 22px rgba(16,185,129,.15);
 }
 
-.core h1 {
-font-size:clamp(35px,7vw,65px);
-letter-spacing:5px;
-font-weight:900;
-background:linear-gradient(90deg,#fff,#00d9ff,#638cff);
--webkit-background-clip:text;
-color:transparent;
+.hex-layer.one {
+    animation: hexRotate 12s linear infinite;
 }
 
-.core h2 {
-font-size:clamp(14px,2.5vw,23px);
-margin-top:17px;
-color:var(--blue);
-letter-spacing:2px;
+.hex-layer.two {
+    transform: rotate(30deg) scale(.82);
+    animation: hexRotateReverse 16s linear infinite;
 }
 
-.core small {
-display:block;
-margin-top:28px;
-font-size:10px;
-letter-spacing:4px;
-color:#7186a8;
+.hex-layer.three {
+    transform: rotate(15deg) scale(1.12);
+    animation: hexRotate 22s linear infinite;
 }
 
-@keyframes pulse {
-0%,100% {box-shadow:0 0 45px #00d9ff15,inset 0 0 65px #00d9ff12;}
-50% {box-shadow:0 0 85px #00d9ff35,inset 0 0 90px #00d9ff25;}
+.hex-layer.two span {
+    border-color: var(--lime);
+    border-width: 1px;
+    box-shadow: 0 0 18px rgba(132,204,22,.18);
 }
 
-@keyframes rotate {to {transform:rotate(360deg);}}
-
-/* AETHER */
-
-.project {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
+.hex-layer.three span {
+    border-color: rgba(16,185,129,.35);
 }
 
-.project-box {
-min-height:330px;
-background:radial-gradient(circle,#073d7655,#080d1b 70%);
-border:1px solid #00d9ff22;
-border-radius:20px;
-display:grid;
-place-items:center;
-text-align:center;
-padding:30px;
+.portal-ring {
+    position: absolute;
+    border: 1px dashed rgba(16,185,129,.45);
+    border-radius: 50%;
 }
 
-.glasses {
-width:100%;
-max-width:440px;
-filter:drop-shadow(0 0 25px #00d9ff35);
-transition:transform .4s;
+.portal-ring.r1 {
+    width: 290px;
+    height: 290px;
+    animation: ringSpin 25s linear infinite;
 }
 
-.project-box:hover .glasses {transform:scale(1.06);}
-
-.project-info h3 {
-font-size:35px;
-margin-bottom:20px;
+.portal-ring.r2 {
+    width: 250px;
+    height: 250px;
+    border-style: solid;
+    border-color: transparent var(--lime) transparent var(--green);
+    animation: ringSpinReverse 8s linear infinite;
 }
 
-.project-info p {
-color:var(--muted);
-line-height:1.8;
-margin-bottom:25px;
+.portal-ring.r3 {
+    width: 320px;
+    height: 320px;
+    border-color: rgba(16,185,129,.18);
+    animation: ringSpin 35s linear infinite;
 }
 
-.status {
-display:inline-block;
-color:#8cffc2;
-background:#00ff8810;
-border:1px solid #00ff8833;
-padding:8px 13px;
-border-radius:30px;
-font-size:12px;
-margin-bottom:20px;
+.energy-particles {
+    position: absolute;
+    inset: 0;
+    animation: ringSpin 18s linear infinite;
 }
 
-/* PRODUCTOS */
-
-.products {
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:22px;
-margin-top:75px;
+.energy-particles i {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--lime);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--lime);
 }
 
-.product-card {
-position:relative;
-background:linear-gradient(160deg,#0d1729,#070c18 75%);
-border:1px solid #ffffff12;
-border-radius:18px;
-overflow:hidden;
-transition:transform .35s,border-color .35s,box-shadow .35s;
+.energy-particles i:nth-child(1) {
+    top: 10%; left: 48%;
 }
 
-.product-card:hover {
-transform:translateY(-9px);
-border-color:#00d9ff66;
-box-shadow:0 15px 45px #00d9ff12;
+.energy-particles i:nth-child(2) {
+    top: 48%; right: 5%;
 }
 
-.product-visual {
-height:220px;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-overflow:hidden;
-background:
-radial-gradient(circle at center,#00d9ff16,transparent 70%),
-linear-gradient(145deg,#0b1425,#050914);
-border-bottom:1px solid #ffffff10;
+.energy-particles i:nth-child(3) {
+    bottom: 12%; left: 25%;
 }
 
-.product-visual::before {
-content:"";
-position:absolute;
-width:170px;
-height:170px;
-border:1px solid #00d9ff15;
-border-radius:50%;
+.energy-particles i:nth-child(4) {
+    top: 25%; left: 10%;
 }
 
-.product-visual svg {
-width:85%;
-max-width:220px;
-height:auto;
-position:relative;
-z-index:2;
-filter:drop-shadow(0 0 18px #00d9ff22);
-transition:transform .5s;
+@keyframes hexRotate {
+    from { transform: rotateY(0deg) rotateZ(0deg); }
+    to { transform: rotateY(360deg) rotateZ(360deg); }
 }
 
-.product-card:hover .product-visual svg {
-transform:scale(1.09);
+@keyframes hexRotateReverse {
+    from { transform: rotateY(360deg) rotateZ(0deg) scale(.82); }
+    to { transform: rotateY(0deg) rotateZ(-360deg) scale(.82); }
 }
 
-.product-body {
-padding:25px;
+@keyframes ringSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.product-label {
-font-size:10px;
-color:var(--blue);
-letter-spacing:2px;
-text-transform:uppercase;
-margin-bottom:12px;
+@keyframes ringSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
-.product-body h3 {
-font-size:20px;
-line-height:1.3;
-margin-bottom:13px;
+@keyframes coreSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.product-body p {
-color:var(--muted);
-font-size:13px;
-line-height:1.7;
-min-height:66px;
+@keyframes corePulse {
+    0%, 100% { transform: scale(.92); }
+    50% { transform: scale(1.12); }
 }
 
-.product-button {
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-top:22px;
-padding:12px 15px;
-border:1px solid #00d9ff40;
-border-radius:8px;
-text-decoration:none;
-color:var(--blue);
-font-size:13px;
-transition:background .3s,color .3s;
+.hero h1 {
+    font-size: clamp(38px, 7vw, 76px);
+    letter-spacing: 9px;
+    font-weight: 900;
+    margin-bottom: 18px;
 }
 
-.product-button:hover {
-background:var(--blue);
-color:#050812;
+.hero h1 span {
+    color: var(--green);
+    text-shadow: 0 0 30px rgba(16,185,129,.4);
 }
 
-.product-button span {font-size:18px;}
-
-/* NOSOTROS */
-  
-.real-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
+.hero-description {
+    color: var(--muted);
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
 }
 
-#nosotros {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 100px 8%;
-  text-align: center;
+.hero-tag {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 4px;
+    border: 1px solid rgba(16,185,129,.25);
+    padding: 12px 18px;
+    border-radius: 3px;
+    background: rgba(16,185,129,.04);
 }
 
-#nosotros .section-title {
-  text-align: center;
-  margin-bottom: 25px;
+.hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #64748b;
 }
 
-#nosotros p {
-  color: var(--muted);
-  line-height: 1.9;
-  max-width: 750px;
-  margin: 0 auto;
-  text-align: center;
+/* BOTONES */
+
+.button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 25px;
+    background: var(--green);
+    color: #04110c;
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .3s;
 }
 
+.button:hover {
+    background: transparent;
+    color: var(--green);
+    box-shadow: 0 0 25px rgba(16,185,129,.15);
+}
+
+/* SERVICIOS */
+
+.services {
+    padding: 110px 8%;
+    max-width: 1450px;
+    margin: auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.section-label {
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 20px;
+}
+
+.section-header h2 span {
+    color: var(--green);
+}
+
+.section-header p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--panel);
+    border: 1px solid rgba(16,185,129,.16);
+    border-radius: 9px;
+    transition: .35s;
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(16,185,129,.55);
+    box-shadow: 0 15px 50px rgba(0,0,0,.25);
+}
+
+.service-image {
+    height: 260px;
+    overflow: hidden;
+    background: #0b1713;
+    position: relative;
+}
+
+.service-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, #07100e 0%, transparent 55%);
+    pointer-events: none;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.06);
+}
+
+.service-content {
+    padding: 25px;
+}
+
+.service-number {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.service-content h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.service-content p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 45px;
+    margin-bottom: 23px;
+}
+
+.explore-button {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid rgba(16,185,129,.4);
+    padding: 11px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.explore-button:hover {
+    background: var(--green);
+    color: #04110c;
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0,0,0,.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+    background: #0b1713;
+    border: 1px solid rgba(16,185,129,.35);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 70px rgba(16,185,129,.1);
+    animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: transparent;
+    color: #94a3b8;
+    border: 0;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modal-label {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+.modal-box h2 {
+    font-size: 29px;
+    margin-bottom: 20px;
+}
+
+.modal-box p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.modal-price {
+    padding: 17px;
+    border: 1px solid rgba(16,185,129,.2);
+    background: rgba(16,185,129,.05);
+    color: var(--lime);
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* FUTURO */
+
+.future {
+    padding: 110px 8%;
+    text-align: center;
+    border-top: 1px solid rgba(16,185,129,.1);
+    border-bottom: 1px solid rgba(16,185,129,.1);
+    background: radial-gradient(ellipse at center,
+        rgba(16,185,129,.06), transparent 65%);
+}
+
+.future h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 25px;
+}
+
+.future h2 span {
+    color: var(--green);
+}
+
+.future p {
+    max-width: 700px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
 
 /* FOOTER */
 
-
-footer {
-  text-align: center;
-  padding: 35px 20px;
-  color: #8493aa;
-  border-top: 1px solid #ffffff10;
-  font-size: 13px;
-  line-height: 1.8;
+.footer {
+    padding: 50px 8% 25px;
+    border-top: 1px solid rgba(16,185,129,.12);
 }
 
-footer span {
-  color: var(--accent);
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding-bottom: 35px;
+}
+
+.footer-brand h3 {
+    letter-spacing: 4px;
+    font-size: 20px;
+}
+
+.footer-brand h3 span {
+    color: var(--green);
+}
+
+.footer-brand p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--muted);
+    font-size: 12px;
+    transition: .3s;
+}
+
+.footer-links a:hover {
+    color: var(--green);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(16,185,129,.12);
+    padding-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.footer-bottom span {
+    color: var(--green);
 }
 
 /* RESPONSIVE */
 
-@media(max-width:1100px) {
-.products {grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width: 760px) {
+    .navbar {
+        padding: 18px 6%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: rgba(7,16,14,.97);
+        border-bottom: 1px solid rgba(16,185,129,.2);
+        display: none;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-button {
+        width: 100%;
+    }
+
+    .portal {
+        transform: scale(.82);
+        margin-top: -15px;
+        margin-bottom: 10px;
+    }
+
+    .hero {
+        min-height: 90vh;
+    }
+
+    .hero h1 {
+        letter-spacing: 5px;
+    }
+
+    .services {
+        padding: 80px 6%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-image {
+        height: 230px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .future {
+        padding: 80px 6%;
+    }
+
+    .footer {
+        padding: 40px 6% 22px;
+    }
+
+    .modal-box {
+        padding: 35px 25px;
+    }
 }
 
-@media(max-width:750px) {
-header {padding:18px 6%;}
-.menu {display:block;}
-
-nav {
-display:none;
-position:absolute;
-top:70px;
-left:0;
-width:100%;
-background:#080d19;
-padding:25px;
-flex-direction:column;
-text-align:center;
-}
-
-nav.active {display:flex;}
-
-.hero {padding:120px 6% 70px;}
-section {padding:75px 6%;}
-
-.project {grid-template-columns:1fr;}
-.project-info {text-align:center;}
-
-.core {width:340px;height:340px;}
-.products {margin-top:45px;gap:15px;}
-.product-visual {height:175px;}
-.product-body {padding:18px;}
-.product-body h3 {font-size:17px;}
-.product-body p {font-size:12px;}
-.product-button {font-size:12px;padding:10px;}
-}
-
-@media(max-width:430px) {
-.products {grid-template-columns:1fr;}
-.product-visual {height:230px;}
-.product-body {padding:25px;}
-.product-body h3 {font-size:21px;}
-.product-body p {font-size:14px;min-height:auto;}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<a href="#inicio" class="logo">ZIRQ<span>ELON</span></a>
-<button class="menu" id="menu">☰</button>
-<nav id="nav">
-<a href="#inicio">Inicio</a>
-<a href="#proyectos">Proyectos</a>
-<a href="#nosotros">Nosotros</a>
-</nav>
+<!-- NAVEGACIÓN -->
+
+<header class="navbar">
+    <a href="#inicio" class="logo">ZIRQ<span>ELON</span></a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Tecnologías</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#servicios" class="nav-button">Explorar proyectos</a>
+    </nav>
 </header>
 
-<!-- INICIO -->
+<!-- HERO -->
 
 <section class="hero" id="inicio">
-<div class="tag">TECNOLOGÍA · INTELIGENCIA · INNOVACIÓN</div>
 
-<div class="core" id="core">
-<div class="core-content">
-<h1>ZIRQELON</h1>
-<h2>El futuro comienza aquí.</h2>
-<small>EXPLORE THE FUTURE</small>
-</div>
-</div>
+    <div class="hero-label">SISTEMAS · INTELIGENCIA · INNOVACIÓN</div>
+
+    <div class="portal">
+
+        <div class="portal-ring r1"></div>
+        <div class="portal-ring r2"></div>
+        <div class="portal-ring r3"></div>
+
+        <div class="hex-layer one">
+            <span></span>
+        </div>
+
+        <div class="hex-layer two">
+            <span></span>
+        </div>
+
+        <div class="hex-layer three">
+            <span></span>
+        </div>
+
+        <div class="energy-particles">
+            <i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="portal-core"></div>
+    </div>
+
+    <h1>ZIRQ<span>ELON</span></h1>
+
+    <p class="hero-description">El futuro comienza aquí.</p>
+
+    <div class="hero-tag">VORTEX · ZIRQELON CORE</div>
+
+    <a href="#servicios" class="hero-scroll">DESCUBRIR ↓</a>
 </section>
 
-<!-- PROYECTOS -->
+<!-- SERVICIOS -->
 
-<section id="proyectos">
+<section class="services" id="servicios">
 
-<!-- PRODUCTOS TECNOLÓGICOS -->
+    <div class="section-header">
+        <div class="section-label">NUESTRO UNIVERSO</div>
+        <h2>Tecnología sin <span>límites</span></h2>
+        <p>
+            Exploramos nuevas posibilidades a través de inteligencia artificial,
+            sistemas inteligentes, desarrollo digital y seguridad tecnológica.
+        </p>
+    </div>
 
-<div class="products">
+    <div class="services-grid">
 
-<!-- AETHER -->
-<article class="product-card">
-  <div class="product-visual">
-    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083"
-         alt="AETHER gafas inteligentes"
-         class="real-photo">
-  </div>
+        <!-- AETHER -->
 
-  <div class="product-body">
-    <div class="product-label">PROTOTIPO · EN DESARROLLO</div>
-    <h3>AETHER</h3>
-    <p>Gafas inteligentes experimentales con IA, asistencia por voz y tecnología portátil.</p>
-    <a href="#nosotros" class="product-button">
-      Explorar <span>↗</span>
-    </a>
-  </div>
-</article>
+        <article class="service-card">
+            <div class="service-image">
+                <img src="aether-glasses.png" alt="AETHER lentes inteligentes">
+            </div>
 
-<!-- WEB -->
+            <div class="service-content">
+                <div class="service-number">01 / HARDWARE</div>
+                <h3>AETHER</h3>
+                <p>
+                    Lentes inteligentes diseñados para conectar la información
+                    digital con el mundo real.
+                </p>
+                <button class="explore-button"
+                    data-title="AETHER"
+                    data-description="AETHER representa nuestra visión de los lentes inteligentes: una interfaz tecnológica que permite explorar nuevas formas de interacción con información, inteligencia artificial y el entorno. Proyecto en desarrollo."
+                    data-price="En desarrollo · Precio por definir">
+                    Explorar →
+                </button>
+            </div>
+        </article>
 
-<article class="product-card">
-<div class="product-visual">
-<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="screen1" x1="0" y1="0" x2="1" y2="1">
-<stop stop-color="#00d9ff" stop-opacity=".5"/>
-<stop offset="1" stop-color="#173c72" stop-opacity=".2"/>
-</linearGradient>
-</defs>
-<rect x="28" y="22" width="184" height="112" rx="10" fill="#101d32" stroke="#00d9ff" stroke-width="2"/>
-<rect x="36" y="30" width="168" height="96" rx="5" fill="url(#screen1)"/>
-<circle cx="45" cy="39" r="3" fill="#ff5b78"/>
-<circle cx="55" cy="39" r="3" fill="#ffcf57"/>
-<circle cx="65" cy="39" r="3" fill="#4cffb0"/>
-<rect x="48" y="54" width="68" height="7" rx="3" fill="#00d9ff"/>
-<rect x="48" y="68" width="105" height="4" rx="2" fill="#9ab8dc" opacity=".6"/>
-<rect x="48" y="78" width="85" height="4" rx="2" fill="#9ab8dc" opacity=".4"/>
-<rect x="48" y="91" width="44" height="22" rx="4" fill="#00d9ff" opacity=".4"/>
-<rect x="101" y="91" width="44" height="22" rx="4" fill="#477bff" opacity=".5"/>
-<rect x="154" y="91" width="38" height="22" rx="4" fill="#00d9ff" opacity=".2"/>
-<path d="M15 145 H225 L208 158 H32 Z" fill="#17253c" stroke="#00d9ff" stroke-opacity=".5"/>
-<rect x="95" y="145" width="50" height="4" rx="2" fill="#00d9ff" opacity=".5"/>
-</svg>
-</div>
-<div class="product-body">
-<div class="product-label">DESARROLLO DIGITAL</div>
-<h3>Páginas web</h3>
-<p>Sitios modernos, rápidos y personalizados para marcas, proyectos y negocios.</p>
-<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
-</div>
-</article>
+        <!-- IA -->
 
-<!-- IA -->
+        <article class="service-card">
+            <div class="service-image">
+                <img src="ai-assistant.png" alt="Asistente de inteligencia artificial">
+            </div>
 
-<article class="product-card">
-<div class="product-visual">
-<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="bot1" x1="0" y1="0" x2="1" y2="1">
-<stop stop-color="#8af8ff"/>
-<stop offset="1" stop-color="#477bff"/>
-</linearGradient>
-</defs>
-<circle cx="120" cy="85" r="65" fill="#00d9ff" opacity=".05"/>
-<path d="M120 25 V42" stroke="#00d9ff" stroke-width="4"/>
-<circle cx="120" cy="21" r="7" fill="#00d9ff"/>
-<rect x="55" y="45" width="130" height="100" rx="28" fill="#10223e" stroke="url(#bot1)" stroke-width="3"/>
-<rect x="68" y="58" width="104" height="60" rx="18" fill="#050d1b"/>
-<circle cx="95" cy="85" r="10" fill="#00d9ff"/>
-<circle cx="145" cy="85" r="10" fill="#00d9ff"/>
-<path d="M103 104 Q120 117 137 104" fill="none" stroke="#477bff" stroke-width="4" stroke-linecap="round"/>
-<rect x="82" y="128" width="76" height="7" rx="3" fill="#00d9ff" opacity=".5"/>
-<path d="M45 65 L35 55 M195 65 L205 55" stroke="#00d9ff" stroke-width="4" stroke-linecap="round"/>
-<circle cx="35" cy="55" r="5" fill="#477bff"/>
-<circle cx="205" cy="55" r="5" fill="#477bff"/>
-</svg>
-</div>
-<div class="product-body">
-<div class="product-label">INTELIGENCIA ARTIFICIAL</div>
-<h3>IA personalizadas</h3>
-<p>Asistentes inteligentes diseñados para tareas, necesidades y objetivos específicos.</p>
-<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
-</div>
-</article>
+            <div class="service-content">
+                <div class="service-number">02 / INTELIGENCIA</div>
+                <h3>IA personalizadas</h3>
+                <p>
+                    Asistentes inteligentes capaces de ayudarte a organizar,
+                    automatizar y mejorar tareas.
+                </p>
+                <button class="explore-button"
+                    data-title="IA PERSONALIZADAS"
+                    data-description="Creamos asistentes de inteligencia artificial adaptados a diferentes necesidades. Pueden integrar conversación, voz, automatización, información y herramientas digitales."
+                    data-price="Cotización personalizada">
+                    Explorar →
+                </button>
+            </div>
+        </article>
 
-<!-- SEGURIDAD -->
+        <!-- WEB -->
 
-<article class="product-card">
-<div class="product-visual">
-<svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="shield1" x1="0" y1="0" x2="1" y2="1">
-<stop stop-color="#8af8ff"/>
-<stop offset="1" stop-color="#477bff"/>
-</linearGradient>
-</defs>
-<circle cx="120" cy="85" r="65" fill="#477bff" opacity=".06"/>
-<path d="M120 25 L175 45 V85 Q170 125 120 150 Q70 125 65 85 V45 Z" fill="#10223e" stroke="url(#shield1)" stroke-width="3"/>
-<path d="M120 38 L160 52 V85 Q155 115 120 135 Q85 115 80 85 V52 Z" fill="#00d9ff" opacity=".15"/>
-<path d="M98 87 L113 102 L145 68" fill="none" stroke="#00d9ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="120" cy="85" r="75" fill="none" stroke="#00d9ff" stroke-opacity=".15" stroke-dasharray="4 8"/>
-</svg>
-</div>
-<div class="product-body">
-<div class="product-label">PROTECCIÓN DIGITAL</div>
-<h3>Seguridad avanzada</h3>
-<p>Investigación de soluciones para proteger información, sistemas y entornos digitales.</p>
-<a href="#nosotros" class="product-button">Explorar <span>↗</span></a>
-</div>
-</article>
+        <article class="service-card">
+            <div class="service-image">
+                <img src="web-design.png" alt="Diseño y desarrollo web">
+            </div>
+
+            <div class="service-content">
+                <div class="service-number">03 / DESARROLLO</div>
+                <h3>Páginas web</h3>
+                <p>
+                    Experiencias digitales modernas, adaptables a dispositivos
+                    y diseñadas para representar proyectos y negocios.
+                </p>
+                <button class="explore-button"
+                    data-title="PÁGINAS WEB"
+                    data-description="Diseño y desarrollo de páginas web con interfaces modernas, adaptación a celulares, secciones personalizadas y una identidad visual propia."
+                    data-price="Cotización personalizada">
+                    Explorar →
+                </button>
+            </div>
+        </article>
+
+        <!-- SEGURIDAD -->
+
+        <article class="service-card">
+            <div class="service-image">
+                <img src="security-system.png" alt="Seguridad tecnológica">
+            </div>
+
+            <div class="service-content">
+                <div class="service-number">04 / PROTECCIÓN</div>
+                <h3>Seguridad avanzada</h3>
+                <p>
+                    Soluciones tecnológicas orientadas a la protección,
+                    privacidad y seguridad de sistemas digitales.
+                </p>
+                <button class="explore-button"
+                    data-title="SEGURIDAD AVANZADA"
+                    data-description="Exploramos soluciones de seguridad tecnológica, protección de sistemas, buenas prácticas de privacidad y herramientas para mejorar la seguridad digital."
+                    data-price="Cotización personalizada">
+                    Explorar →
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
 
 <!-- NOSOTROS -->
 
-<section id="nosotros">
-<h2 class="section-title">El futuro se <span>construye</span></h2>
-<p>
-ZIRQELON es una iniciativa tecnológica enfocada en explorar,
-aprender y desarrollar ideas relacionadas con inteligencia
-artificial, software y dispositivos inteligentes. Nuestra
-visión es convertir ideas innovadoras en proyectos reales.
-</p>
+<section class="future" id="nosotros">
+    <div class="section-label">NUESTRA VISIÓN</div>
+    <h2>El futuro se <span>construye</span></h2>
+    <p>
+        En ZIRQELON creemos que la tecnología es una herramienta para
+        transformar ideas en realidades. Exploramos nuevas posibilidades
+        y construimos soluciones que conectan inteligencia, creatividad
+        e innovación para abrir camino hacia el futuro.
+    </p>
 </section>
 
-<footer>
-© <span id="year"></span> ZIRQELON · El futuro comienza aquí.
-<br><br>
-Tecnología e innovación en desarrollo.
+<!-- FOOTER -->
+
+<footer class="footer" id="contacto">
+
+    <div class="footer-main">
+        <div class="footer-brand">
+            <h3>ZIRQ<span>ELON</span></h3>
+            <p>El futuro comienza aquí.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Tecnologías</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="year"></span> ZIRQELON. Todos los derechos reservados.</p>
+        <p>Construyendo el futuro.</p>
+    </div>
+
 </footer>
 
+<!-- VENTANA DE INFORMACIÓN -->
+
+<div class="modal" id="serviceModal" role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle">
+
+    <div class="modal-box">
+
+        <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+
+        <div class="modal-label">ZIRQELON / INFORMACIÓN</div>
+
+        <h2 id="modalTitle">Proyecto</h2>
+
+        <p id="modalDescription"></p>
+
+        <div class="modal-price" id="modalPrice"></div>
+
+    </div>
+</div>
+
 <script>
-const menu=document.getElementById("menu");
-const nav=document.getElementById("nav");
-const core=document.getElementById("core");
+/* AÑO */
 
-menu.addEventListener("click",()=>{
-nav.classList.toggle("active");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* MENÚ MÓVIL */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    menuToggle.textContent = navLinks.classList.contains("open") ? "×" : "☰";
 });
 
-nav.querySelectorAll("a").forEach(link=>{
-link.addEventListener("click",()=>{
-nav.classList.remove("active");
-});
-});
-
-core.addEventListener("click",()=>{
-core.style.transform="scale(1.08)";
-setTimeout(()=>core.style.transform="",450);
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.textContent = "☰";
+    });
 });
 
-document.getElementById("year").textContent=new Date().getFullYear();
+/* MODALES */
+
+const modal = document.getElementById("serviceModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalPrice = document.getElementById("modalPrice");
+const modalClose = document.getElementById("modalClose");
+
+document.querySelectorAll(".explore-button").forEach(button => {
+    button.addEventListener("click", () => {
+        modalTitle.textContent = button.dataset.title;
+        modalDescription.textContent = button.dataset.description;
+        modalPrice.textContent = button.dataset.price;
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+});
+
+function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+modalClose.addEventListener("click", closeModal);
+
+modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+});
 </script>
 
 </body>
