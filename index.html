@@ -1118,9 +1118,7 @@ document.querySelectorAll(".explore-button").forEach(button => {
         modalMainImage.appendChild(mainImg);
 
         const baseName = projectImage.getAttribute("src").replace(/\\.(png|jpg|jpeg|webp)$/i, "");
-        modalSlot2.innerHTML = '<img src="' + baseName + '-2.png" alt="Imagen adicional 2">';
-        modalSlot3.innerHTML = '<img src="' + baseName + '-3.png" alt="Imagen adicional 3">';
-
+     
         modal.classList.add("active");
         document.body.style.overflow = "hidden";
     });
